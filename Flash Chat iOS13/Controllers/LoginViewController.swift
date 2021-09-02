@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextfield: UITextField!
@@ -15,6 +15,33 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func loginPressed(_ sender: UIButton) {
+        
+        if let email = emailTextfield.text, let password = passwordTextfield.text {
+            
+            Auth.auth().signIn(withEmail: email, password: password) {authResult, error in
+               
+                if let e = error {
+                    let errorMsg = e.localizedDescription
+                    showAlert()
+                    
+                    // show the alert to user, message comes from firebase
+                    // the error is related either to password or email
+                    func showAlert() {
+                        let alert = UIAlertController(title: "Alert!", message: "\(errorMsg)", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {action in
+                        }))
+                        self.present(alert, animated: true)
+                    }
+                } else {
+                    self.performSegue(withIdentifier: "LoginToChat", sender: self)
+                    print(email, password)
+                }
+
+            }
+        }
     }
+    
+    
+
     
 }
