@@ -34,7 +34,7 @@ class RegisterViewController: UIViewController {
                 } else {
                     // if there is no error then a can get hold of users data
                     // or more actions like navigate to ChatViewController
-                    self.performSegue(withIdentifier: "RegisterToChat", sender: self)
+                    self.performSegue(withIdentifier: K.registerSegue, sender: self)
                     print(email, password)
                 }
             }
