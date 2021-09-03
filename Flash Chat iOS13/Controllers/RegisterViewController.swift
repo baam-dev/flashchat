@@ -26,20 +26,19 @@ class RegisterViewController: UIViewController {
                     // show the alert to user, message comes from firebase
                     // the error is related either to password or email
                     func showAlert() {
-                        let alert = UIAlertController(title: "Alert!", message: "\(errorMsg)", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Registration Failed!", message: "\(errorMsg)", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {action in
                         }))
                         self.present(alert, animated: true)
                     }
                 } else {
-                    // if there is no error then a can get hold of users data
-                    // or more actions like navigate to ChatViewController
+                    // if no error, login succeeded, navigate to ChatViewController
                     self.performSegue(withIdentifier: K.registerSegue, sender: self)
                     print(email, password)
-                }
             }
         }
     }
 
     
+}
 }

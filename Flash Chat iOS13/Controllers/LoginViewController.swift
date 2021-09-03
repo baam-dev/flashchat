@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
                     // show the alert to user, message comes from firebase
                     // the error is related either to password or email
                     func showAlert() {
-                        let alert = UIAlertController(title: "Alert!", message: "\(errorMsg)", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Login Failed!", message: "\(errorMsg)", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {action in
                         }))
                         self.present(alert, animated: true)

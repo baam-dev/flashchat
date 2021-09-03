@@ -33,20 +33,27 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
-        // by pressing the Log Out display the main page
-        // print the error if there is any
-    do {
-        try Auth.auth().signOut()
-        navigationController?.popToRootViewController(animated: true)
         
-    } catch let signOutError as NSError {
-      print("Error signing out: %@", signOutError)
+        confirmLogout ()
+        
+        func confirmLogout () {
+            let alert = UIAlertController(title: "Log Out", message: "You will be returned to the login screen", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {action in
+            }))
+            alert.addAction(UIAlertAction(title: "Log Out", style: .default, handler: {action in
+                // if user chose to log out, go to the first page
+                // print the error if there is any
+            do {
+                try Auth.auth().signOut()
+                self.navigationController?.popToRootViewController(animated: true)
+                
+            } catch let signOutError as NSError {
+              print("Error signing out: %@", signOutError)
+            }
+            }))
+            self.present(alert, animated: true)
+        }
     }
-      
-    }
-
-    
-    
 }
 
 extension ChatViewController: UITableViewDataSource {
