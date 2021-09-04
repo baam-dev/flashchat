@@ -34,7 +34,6 @@ class RegisterViewController: UIViewController {
                 } else {
                     // if no error, login succeeded, navigate to ChatViewController
                     self.performSegue(withIdentifier: K.registerSegue, sender: self)
-                    print(email, password)
             }
         }
     }
